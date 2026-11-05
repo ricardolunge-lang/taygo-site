@@ -1,0 +1,467 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Taygo</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Taygo, aceleradora de negócios: tráfego pago, social media, sites e páginas de vendas, edição de vídeos.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=Lexend:wght@500;600;700&display=swap">
+<style>
+/* Layout: one dark-green column, brand arrow as hero mark, service list as the spine of the page, lime reserved for actions. */
+:root{
+  --forest:#06291f;      /* página */
+  --forest-2:#0b3528;    /* cartões */
+  --forest-3:#124435;    /* hover / bordas fortes */
+  --slate:#213a40;
+  --line:rgba(220,252,156,.14);
+  --mint:#e4f1ef;        /* texto principal */
+  --mint-dim:#a9c2bd;    /* texto secundário */
+  --lime:#d9fb9a;        /* acento da marca */
+  --lime-ink:#06291f;
+  --display:"Lexend","DM Sans",system-ui,sans-serif;
+  --body:"DM Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"DM Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
+  --radius:18px;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+.opt{font:inherit;text-transform:none;letter-spacing:0;color:var(--mint)}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+body{background:var(--forest);color:var(--mint);font-family:var(--body);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--forest)}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--lime);outline-offset:3px;border-radius:6px}
+.wrap{max-width:1120px;margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:var(--display);font-weight:600;letter-spacing:-.02em;line-height:1.08;text-wrap:balance;margin:0}
+p{margin:0}
+.eyebrow{font-family:var(--mono);font-size:13px;letter-spacing:.22em;text-transform:uppercase;color:var(--mint-dim)}
+
+/* Nav */
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:rgba(6,41,31,.86);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:14px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;font-family:var(--display);font-weight:700;font-size:26px;letter-spacing:-.03em;color:var(--mint)}
+.logo svg{width:26px;height:26px;flex:none}
+.nav-links{display:flex;gap:28px;font-size:15px}
+.nav-links a{text-decoration:none;color:var(--mint-dim)}
+.nav-links a:hover{color:var(--mint)}
+.btn{display:inline-flex;align-items:center;gap:10px;font:600 16px/1 var(--body);text-decoration:none;border-radius:999px;padding:15px 24px;border:0;cursor:pointer;transition:transform .2s ease,background .2s ease}
+.btn-lime{background:var(--lime);color:var(--lime-ink)}
+.btn-lime:hover{transform:translateY(-2px)}
+.btn-ghost{background:transparent;color:var(--mint);box-shadow:inset 0 0 0 1px var(--line)}
+.btn-ghost:hover{box-shadow:inset 0 0 0 1px var(--lime)}
+.btn .arr{transition:transform .2s ease}
+.btn:hover .arr{transform:translate(2px,-2px)}
+@media (max-width:820px){.nav-links{display:none}.nav .btn{padding:12px 18px;font-size:15px}}
+
+/* Hero */
+.hero .wrap{display:grid;grid-template-columns:1.25fr .75fr;gap:48px;align-items:center;padding-block:88px 72px}
+.hero h1{font-size:clamp(42px,6.6vw,84px);font-weight:700;margin-top:18px}
+.hero h1 em{font-style:normal;color:var(--lime)}
+.hero .lead{font-size:clamp(18px,2vw,21px);color:var(--mint-dim);max-width:34em;margin-top:24px}
+.hero .ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:36px}
+.mark{position:relative;aspect-ratio:1;max-width:100%}
+.mark svg.big{width:100%;height:100%;display:block}
+.mark svg.big path{fill:var(--lime)}
+.chip{position:absolute;font:500 13px/1 var(--mono);letter-spacing:.04em;background:var(--forest-2);border:1px solid var(--line);color:var(--mint);padding:10px 14px;border-radius:999px;white-space:nowrap;animation:float 6s ease-in-out infinite}
+.chip:nth-of-type(1){top:6%;left:-8%}
+.chip:nth-of-type(2){top:46%;left:-16%;animation-delay:-2s}
+.chip:nth-of-type(3){bottom:4%;left:8%;animation-delay:-4s}
+.chip:nth-of-type(4){bottom:30%;right:-6%;animation-delay:-1s}
+@keyframes float{50%{transform:translateY(-8px)}}
+@media (max-width:820px){
+  .hero .wrap{grid-template-columns:1fr;padding-block:56px 48px;gap:40px}
+  .mark{max-width:260px;margin:0 auto 0 8px}
+  .chip:nth-of-type(1){left:-4%}.chip:nth-of-type(2){left:-6%}
+}
+
+/* Faixa de canais */
+.strip{border-block:1px solid var(--line);overflow:hidden}
+.strip .row{display:flex;gap:48px;padding-block:18px;width:max-content;animation:slide 32s linear infinite;font-family:var(--display);font-weight:500;font-size:20px;color:var(--mint-dim)}
+.strip .row span::before{content:"↗";color:var(--lime);margin-right:14px}
+@keyframes slide{to{transform:translateX(-50%)}}
+
+/* Serviços */
+section{padding-block:96px}
+.intro{font-family:var(--display);font-weight:500;font-size:clamp(24px,3vw,34px);line-height:1.35;color:var(--mint-dim);max-width:30em;letter-spacing:-.01em}
+.intro b{color:var(--mint);font-weight:500}
+.services-head{margin-top:64px;margin-bottom:24px}
+.services{display:grid;gap:14px}
+.svc{background:var(--forest-2);border:1px solid var(--line);border-radius:var(--radius);transition:border-color .2s ease,background .2s ease}
+.svc[open]{border-color:rgba(220,252,156,.4);background:var(--forest-3)}
+.svc summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:1fr auto;gap:6px 20px;align-items:center;padding:26px 28px}
+.svc summary::-webkit-details-marker{display:none}
+.svc summary:hover .go{background:var(--lime);color:var(--lime-ink)}
+.svc h3{font-size:clamp(22px,2.6vw,30px);font-weight:600}
+.svc .sub{grid-column:1;color:var(--mint-dim);font-size:16px}
+.go{grid-row:1/3;grid-column:2;width:46px;height:46px;border-radius:50%;display:grid;place-items:center;border:1px solid var(--line);color:var(--lime);font-size:20px;transition:transform .25s ease,background .2s ease,color .2s ease}
+.svc[open] .go{transform:rotate(90deg);background:var(--lime);color:var(--lime-ink)}
+.svc .body{display:grid;grid-template-columns:1fr 1fr;gap:28px;padding:0 28px 28px}
+.svc .body p{color:var(--mint-dim);max-width:34em}
+.svc ul{margin:0;padding:0;list-style:none;display:grid;gap:10px}
+.svc li{display:flex;gap:12px;align-items:baseline}
+.svc li::before{content:"";flex:none;width:8px;height:8px;border-radius:2px;background:var(--lime);transform:translateY(-1px)}
+.svc .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.svc .tags span{font:500 12px/1 var(--mono);letter-spacing:.06em;padding:8px 11px;border-radius:999px;background:rgba(220,252,156,.08);color:var(--lime)}
+@media (max-width:720px){.svc summary{padding:22px 20px}.svc .body{grid-template-columns:1fr;padding:0 20px 22px;gap:20px}.go{width:40px;height:40px}}
+
+.plan{margin-top:14px;display:flex;align-items:center;justify-content:space-between;gap:24px;background:var(--lime);color:var(--lime-ink);border-radius:var(--radius);padding:30px 28px;text-decoration:none;transition:transform .2s ease}
+.plan:hover{transform:translateY(-3px)}
+.plan .eyebrow{color:rgba(6,41,31,.7)}
+.plan h3{font-size:clamp(24px,3vw,32px);margin-top:10px;font-weight:700}
+.plan p{margin-top:10px;max-width:36em;color:rgba(6,41,31,.82)}
+.plan .go{position:static;grid-row:auto;border-color:rgba(6,41,31,.25);color:var(--lime-ink);flex:none;width:56px;height:56px;font-size:24px}
+
+/* Processo */
+.process{background:var(--mint);color:var(--forest)}
+.process .eyebrow{color:#47635c}
+.process h2{font-size:clamp(34px,4.6vw,56px);margin-top:14px;max-width:14em}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:56px;counter-reset:s;border-top:2px solid var(--forest)}
+.step{padding:22px 24px 0 0;position:relative}
+.step + .step{padding-left:24px;border-left:1px solid rgba(6,41,31,.18)}
+.step::before{counter-increment:s;content:"Etapa " counter(s);font:500 13px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:#47635c}
+.step h3{font-size:22px;margin-top:18px}
+.step p{margin-top:10px;color:#2f4a44;font-size:16px}
+@media (max-width:860px){.steps{grid-template-columns:1fr 1fr;row-gap:36px}.step:nth-child(3){padding-left:0;border-left:0}}
+@media (max-width:520px){.steps{grid-template-columns:1fr}.step,.step + .step{padding:22px 0 0;border-left:0}.step + .step{border-top:1px solid rgba(6,41,31,.18)}}
+
+/* Por que */
+.why .wrap{display:grid;grid-template-columns:.9fr 1.1fr;gap:64px;align-items:start}
+.why h2{font-size:clamp(34px,4.4vw,52px);margin-top:14px}
+.why .about{margin-top:24px;color:var(--mint-dim);display:grid;gap:16px;max-width:32em}
+.pillars{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.pillar{border-top:1px solid var(--line);padding-top:20px}
+.pillar svg{width:22px;height:22px}
+.pillar svg path{fill:var(--lime)}
+.pillar h3{font-size:20px;margin-top:16px}
+.pillar p{color:var(--mint-dim);font-size:15.5px;margin-top:8px}
+@media (max-width:860px){.why .wrap{grid-template-columns:1fr;gap:48px}}
+@media (max-width:520px){.pillars{grid-template-columns:1fr}}
+
+/* FAQ */
+.faq{border-top:1px solid var(--line)}
+.faq .wrap{display:grid;grid-template-columns:.8fr 1.2fr;gap:64px}
+.faq h2{font-size:clamp(32px,4vw,46px);margin-top:14px}
+.qa{border-bottom:1px solid var(--line)}
+.qa summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;gap:20px;padding:22px 0;font-family:var(--display);font-weight:500;font-size:19px}
+.qa summary::-webkit-details-marker{display:none}
+.qa summary::after{content:"+";color:var(--lime);font-size:24px;line-height:1;transition:transform .2s ease}
+.qa[open] summary::after{transform:rotate(45deg)}
+.qa p{color:var(--mint-dim);padding:0 0 22px;max-width:40em}
+@media (max-width:860px){.faq .wrap{grid-template-columns:1fr;gap:24px}}
+
+/* Contato */
+.contact{background:var(--slate)}
+.contact .wrap{display:block}
+.contact h2{font-size:clamp(36px,5vw,62px);margin-top:14px}
+.contact h2 em{font-style:normal;color:var(--lime)}
+.contact .side p{color:var(--mint-dim);margin-top:20px;max-width:28em}
+form{display:grid;gap:18px;background:var(--forest);border:1px solid var(--line);border-radius:var(--radius);padding:28px}
+label,.legend{font:500 13px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--mint-dim)}
+.field{display:grid;gap:10px}
+input[type=text],input[type=tel],textarea{width:100%;font:400 16px/1.4 var(--body);color:var(--mint);background:var(--forest-2);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+input:focus,textarea:focus{outline:none;border-color:var(--lime)}
+textarea{min-height:96px;resize:vertical}
+.opts{display:flex;flex-wrap:wrap;gap:8px}
+.opt input{position:absolute;opacity:0;pointer-events:none}
+.opt span{display:inline-block;padding:10px 14px;border-radius:999px;border:1px solid var(--line);font-size:15px;cursor:pointer;transition:all .15s ease}
+.opt input:checked + span{background:var(--lime);color:var(--lime-ink);border-color:var(--lime)}
+.opt input:focus-visible + span{outline:2px solid var(--lime);outline-offset:2px}
+form .btn{justify-content:center;width:100%}
+.err{color:#ffb4a2;font-size:14px}
+.result{display:grid;gap:14px}
+.result pre{white-space:pre-wrap;font:400 15px/1.55 var(--body);background:var(--forest-2);border:1px solid var(--line);border-radius:12px;padding:16px;margin:0;color:var(--mint)}
+.result .row{display:flex;flex-wrap:wrap;gap:10px}
+@media (max-width:860px){.contact .wrap{grid-template-columns:1fr;gap:40px}form{padding:22px}}
+
+footer{border-top:1px solid var(--line)}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:16px;padding-block:32px;color:var(--mint-dim);font-size:15px}
+footer .logo{font-size:22px}
+footer .logo svg{width:22px;height:22px}
+.wa-float{position:fixed;z-index:40;right:calc(20px + env(safe-area-inset-right,0px));bottom:calc(20px + env(safe-area-inset-bottom,0px));width:60px;height:60px;border-radius:50%;background:#25d366;display:grid;place-items:center;box-shadow:0 8px 24px rgba(0,0,0,.35);transition:transform .2s ease}
+.wa-float:hover{transform:scale(1.08)}
+.wa-float svg{width:32px;height:32px;fill:#fff}
+.gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;padding-block:56px 0}
+.gallery figure{margin:0;aspect-ratio:4/5;border-radius:var(--radius);background:var(--forest-2) center/cover no-repeat;position:relative;overflow:hidden;border:1px solid var(--line)}
+.gallery figure::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(6,41,31,.9))}
+.gallery figcaption{position:absolute;left:18px;bottom:16px;z-index:1;font:500 13px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--lime)}
+@media (max-width:820px){.gallery{grid-template-columns:1fr 1fr}}
+.videos h2{font-size:clamp(34px,4.6vw,56px);margin-top:14px}
+.videos .lead{color:var(--mint-dim);margin-top:16px;max-width:36em}
+.vgrid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-top:40px}
+.vgrid figure{margin:0;display:grid;gap:10px;min-width:0}
+.vgrid video{width:100%;aspect-ratio:9/16;object-fit:cover;border-radius:14px;background:var(--forest-2);border:1px solid var(--line);display:block}
+.vgrid figcaption{font-size:15px;color:var(--mint-dim)}
+@media (max-width:980px){.vgrid{grid-template-columns:repeat(3,1fr)}}
+@media (max-width:560px){.vgrid{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body style="margin:0">
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <path id="taygo-arrow" d="M12 0H100V88H72V48L46 74C37 83 31 91 29 100H0C2 84 10 70 24 56L52 28H12Z"/>
+  </defs>
+</svg>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="logo" href="#topo" aria-label="Taygo, início">
+      <svg viewBox="0 0 100 100" aria-hidden="true"><use href="#taygo-arrow" fill="var(--lime)"/></svg>Taygo
+    </a>
+    <nav class="nav-links" aria-label="Principal">
+      <a href="#servicos">Serviços</a>
+      <a href="#videos">Vídeos</a>
+      <a href="#como-funciona">Como funciona</a>
+      <a href="#sobre">Sobre</a>
+      <a href="#duvidas">Dúvidas</a>
+    </nav>
+    <a class="btn btn-lime" href="https://wa.me/5547920023957?text=Ol%C3%A1%2C%20Taygo!%20Quero%20saber%20mais%20sobre%20os%20servi%C3%A7os." target="_blank" rel="noopener">Vamos conversar <span class="arr">↗</span></a>
+  </div>
+</header>
+
+<main id="topo">
+  <div class="hero">
+    <div class="wrap">
+      <div>
+        <p class="eyebrow">Aceleradora de negócios</p>
+        <h1>Seu negócio indo <em>mais longe</em>, mais rápido.</h1>
+        <p class="lead">Tráfego pago, social media, sites, páginas de vendas e edição de vídeos. Unimos design, conteúdo e conversão para transformar atenção em cliente.</p>
+        <div class="ctas">
+          <a class="btn btn-lime" href="https://wa.me/5547920023957?text=Ol%C3%A1%2C%20Taygo!%20Quero%20saber%20mais%20sobre%20os%20servi%C3%A7os." target="_blank" rel="noopener">Quero acelerar meu negócio <span class="arr">↗</span></a>
+          <a class="btn btn-ghost" href="#servicos">Ver serviços</a>
+        </div>
+      </div>
+      <div class="mark" aria-hidden="true">
+        <svg class="big" viewBox="-6 -6 112 112"><use href="#taygo-arrow" fill="var(--lime)"/></svg>
+        <span class="chip">Meta Ads</span>
+        <span class="chip">Google Ads</span>
+        <span class="chip">Reels</span>
+        <span class="chip">Landing page</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="strip" aria-hidden="true">
+    <div class="row">
+      <span>Tráfego pago</span><span>Social media</span><span>Sites</span><span>Páginas de vendas</span><span>Edição de vídeos</span><span>Criativos para anúncios</span>
+      <span>Tráfego pago</span><span>Social media</span><span>Sites</span><span>Páginas de vendas</span><span>Edição de vídeos</span><span>Criativos para anúncios</span>
+    </div>
+  </div>
+
+  <div class="wrap gallery" aria-label="Nosso trabalho">
+    <figure style="background-image:url(img/trafego-pago.jpg)"><figcaption>Tráfego pago</figcaption></figure>
+    <figure style="background-image:url(img/social-media.jpg)"><figcaption>Social media</figcaption></figure>
+    <figure style="background-image:url(img/sites.jpg)"><figcaption>Sites e páginas</figcaption></figure>
+    <figure style="background-image:url(img/edicao-video.jpg)"><figcaption>Edição de vídeos</figcaption></figure>
+  </div>
+
+  <section id="servicos">
+    <div class="wrap">
+      <p class="intro">Funciona assim: <b>você conta o momento do seu negócio</b>, a gente indica o que faz mais sentido agora e cuida de tudo, da estratégia à entrega. <b>Sem pacotes engessados:</b> você contrata só o que precisa.</p>
+
+      <p class="eyebrow services-head">O que você precisa agora?</p>
+      <div class="services">
+        <details class="svc" name="svc" open>
+          <summary>
+            <h3>Tráfego pago</h3>
+            <span class="sub">Anúncios no Meta Ads e no Google Ads</span>
+            <span class="go" aria-hidden="true">↗</span>
+          </summary>
+          <div class="body">
+            <div>
+              <p>Gestão do investimento em anúncios para gerar contatos e vendas, não só curtidas. Campanhas acompanhadas de perto e ajustadas pelo que traz resultado.</p>
+              <div class="tags"><span>Instagram</span><span>Facebook</span><span>Google</span><span>YouTube</span></div>
+            </div>
+            <ul>
+              <li>Planejamento de público, oferta e verba</li>
+              <li>Criação dos anúncios (texto e criativo)</li>
+              <li>Configuração de pixel e eventos de conversão</li>
+              <li>Otimização contínua das campanhas</li>
+              <li>Relatório mensal em linguagem simples</li>
+            </ul>
+          </div>
+        </details>
+
+        <details class="svc" name="svc">
+          <summary>
+            <h3>Social media</h3>
+            <span class="sub">Instagram ativo, com cara de marca</span>
+            <span class="go" aria-hidden="true">↗</span>
+          </summary>
+          <div class="body">
+            <div>
+              <p>Gestão das suas redes com planejamento de conteúdo, textos e criativos. Uma presença constante que comunica valor de forma clara e profissional.</p>
+              <div class="tags"><span>Feed</span><span>Carrossel</span><span>Stories</span><span>Reels</span></div>
+            </div>
+            <ul>
+              <li>Calendário editorial mensal</li>
+              <li>3 postagens por semana, com textos e artes</li>
+              <li>Identidade visual aplicada aos posts</li>
+              <li>Legendas e hashtags pensadas para alcance</li>
+              <li>Acompanhamento de métricas do perfil</li>
+            </ul>
+          </div>
+        </details>
+
+        <details class="svc" name="svc">
+          <summary>
+            <h3>Sites e páginas de vendas</h3>
+            <span class="sub">Presença que passa confiança e converte</span>
+            <span class="go" aria-hidden="true">↗</span>
+          </summary>
+          <div class="body">
+            <div>
+              <p>Do site institucional à página de vendas de um produto ou serviço. Estrutura pensada para quem chega do anúncio virar contato no WhatsApp.</p>
+              <div class="tags"><span>Site institucional</span><span>Landing page</span><span>Página de vendas</span></div>
+            </div>
+            <ul>
+              <li>Texto e estrutura focados em conversão</li>
+              <li>Layout responsivo, rápido no celular</li>
+              <li>Botões de WhatsApp e formulários</li>
+              <li>Integração com pixel e Google Analytics</li>
+              <li>Ajustes após a publicação</li>
+            </ul>
+          </div>
+        </details>
+
+        <details class="svc" name="svc">
+          <summary>
+            <h3>Edição de vídeos</h3>
+            <span class="sub">Reels, anúncios em vídeo e cortes</span>
+            <span class="go" aria-hidden="true">↗</span>
+          </summary>
+          <div class="body">
+            <div>
+              <p>Vídeos curtos que prendem nos primeiros segundos. Editamos o material que você grava ou fazemos a captação de imagens com a nossa equipe.</p>
+              <div class="tags"><span>Reels</span><span>TikTok</span><span>Shorts</span><span>Anúncios</span></div>
+            </div>
+            <ul>
+              <li>Roteiro e gancho para os primeiros 3 segundos</li>
+              <li>Cortes dinâmicos, trilha e efeitos</li>
+              <li>Legendas animadas</li>
+              <li>Versões para feed, stories e anúncio</li>
+              <li>Captação de vídeo e foto, quando contratada</li>
+            </ul>
+          </div>
+        </details>
+      </div>
+
+      <a class="plan" href="https://wa.me/5547920023957?text=Ol%C3%A1%2C%20Taygo!%20Quero%20saber%20mais%20sobre%20os%20servi%C3%A7os." target="_blank" rel="noopener">
+        <div>
+          <p class="eyebrow">Não sabe por onde começar?</p>
+          <h3>Quero um planejamento de marketing personalizado</h3>
+          <p>Analisamos seu negócio e montamos um plano com as ações que fazem sentido para o seu momento e o seu orçamento.</p>
+        </div>
+        <span class="go" aria-hidden="true">↗</span>
+      </a>
+    </div>
+  </section>
+
+  <section class="videos" id="videos">
+    <div class="wrap">
+      <p class="eyebrow">Portfólio</p>
+      <h2>Vídeos que a gente editou</h2>
+      <p class="lead">Reels, anúncios e conteúdos para imobiliárias, estética e lançamentos. Toque para assistir.</p>
+      <div class="vgrid">
+        <figure><video src="videos/praiano-acucena.mp4" poster="videos/praiano-acucena.jpg" controls playsinline preload="none"></video><figcaption>Praiano Açucena</figcaption></figure>
+        <figure><video src="videos/investir-em-bombinhas.mp4" poster="videos/investir-em-bombinhas.jpg" controls playsinline preload="none"></video><figcaption>Investir em Bombinhas</figcaption></figure>
+        <figure><video src="videos/beatriz-antes-depois.mp4" poster="videos/beatriz-antes-depois.jpg" controls playsinline preload="none"></video><figcaption>Antes e depois · Beatriz</figcaption></figure>
+        <figure><video src="videos/black-vitalicia.mp4" poster="videos/black-vitalicia.jpg" controls playsinline preload="none"></video><figcaption>Black vitalícia</figcaption></figure>
+        <figure><video src="videos/timelapse.mp4" poster="videos/timelapse.jpg" controls playsinline preload="none"></video><figcaption>Timelapse</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="process" id="como-funciona">
+    <div class="wrap">
+      <p class="eyebrow">Como funciona</p>
+      <h2>Do primeiro papo à entrega, cada etapa tem um porquê.</h2>
+      <div class="steps">
+        <div class="step"><h3>Diagnóstico</h3><p>Alinhamento estratégico para entender o negócio, o público e o que já foi feito.</p></div>
+        <div class="step"><h3>Plano</h3><p>Uma proposta com as ações certas para agora, com escopo, prazo e investimento claros.</p></div>
+        <div class="step"><h3>Execução</h3><p>Criação e desenvolvimento: anúncios, conteúdos, páginas e vídeos produzidos pela equipe.</p></div>
+        <div class="step"><h3>Otimização</h3><p>Acompanhamos os números, ajustamos o que precisa e entregamos tudo organizado.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="why" id="sobre">
+    <div class="wrap">
+      <div>
+        <p class="eyebrow">Quem está por trás</p>
+        <h2>Mais que uma agência. Uma aceleradora de negócios.</h2>
+        <div class="about">
+          <p>Somos uma agência especializada em comunicação, marketing digital e presença online.</p>
+          <p>Atuamos de forma estratégica, unindo design, conteúdo e conversão para transformar atenção em resultado para negócios.</p>
+          <p>Mais do que executar, buscamos entender o contexto de cada cliente e propor soluções que façam sentido no curto, médio e longo prazo.</p>
+        </div>
+      </div>
+      <div class="pillars">
+        <div class="pillar">
+          <svg viewBox="0 0 100 100" aria-hidden="true"><use href="#taygo-arrow"/></svg>
+          <h3>Foco em resultado</h3>
+          <p>Bonito é o mínimo. Cada entrega é pensada para gerar contato, venda e crescimento.</p>
+        </div>
+        <div class="pillar">
+          <svg viewBox="0 0 100 100" aria-hidden="true"><use href="#taygo-arrow"/></svg>
+          <h3>Comunicação clara</h3>
+          <p>Você sabe o que está sendo feito, por que e quanto está custando. Sem enrolação.</p>
+        </div>
+        <div class="pillar">
+          <svg viewBox="0 0 100 100" aria-hidden="true"><use href="#taygo-arrow"/></svg>
+          <h3>Tudo num lugar só</h3>
+          <p>Anúncio, post, página e vídeo falando a mesma língua, feitos pela mesma equipe.</p>
+        </div>
+        <div class="pillar">
+          <svg viewBox="0 0 100 100" aria-hidden="true"><use href="#taygo-arrow"/></svg>
+          <h3>Experiência prática</h3>
+          <p>Projetos reais de marketing digital para pequenos e médios negócios.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="faq" id="duvidas">
+    <div class="wrap">
+      <div>
+        <p class="eyebrow">Dúvidas frequentes</p>
+        <h2>Antes de a gente conversar</h2>
+      </div>
+      <div>
+        <details class="qa" name="qa"><summary>Preciso contratar todos os serviços?</summary><p>Não. Você contrata só o que faz sentido agora. Dá para começar com um serviço e somar outros conforme o negócio cresce.</p></details>
+        <details class="qa" name="qa"><summary>O valor dos anúncios está incluso na gestão de tráfego?</summary><p>Não. A gestão cobre estratégia, criação e otimização das campanhas. A verba dos anúncios é paga direto ao Meta ou ao Google, no seu cartão, e você define quanto quer investir.</p></details>
+        <details class="qa" name="qa"><summary>Em quanto tempo vejo resultado?</summary><p>Anúncios começam a gerar contatos nas primeiras semanas. Redes sociais e conteúdo constroem resultado ao longo dos meses. No diagnóstico a gente alinha o que esperar para o seu caso.</p></details>
+        <details class="qa" name="qa"><summary>Como funciona o pagamento de um projeto?</summary><p>Para projetos como sites e páginas de vendas: 50% de entrada e 50% na entrega e aprovação final. Serviços contínuos, como social media e tráfego, são mensais.</p></details>
+        <details class="qa" name="qa"><summary>Vocês atendem negócios de qualquer cidade?</summary><p>Sim. Todo o trabalho pode ser feito online. A captação de vídeo e foto presencial depende da região.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact" id="contato">
+    <div class="wrap">
+      <div class="side">
+        <p class="eyebrow">Vamos conversar</p>
+        <h2>Bora fazer seu negócio <em>ir mais longe?</em></h2>
+        <p>Conta pra gente o momento do seu negócio. Respondemos com uma indicação do que faz mais sentido agora, sem compromisso.</p>
+        <p style="margin-top:32px"><a class="btn btn-lime" href="https://wa.me/5547920023957?text=Ol%C3%A1%2C%20Taygo!%20Quero%20saber%20mais%20sobre%20os%20servi%C3%A7os." target="_blank" rel="noopener">Chamar no WhatsApp <span class="arr">↗</span></a></p>
+        <p style="margin-top:14px;color:var(--mint)">WhatsApp: (47) 92002-3957</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <a class="logo" href="#topo"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="#taygo-arrow" fill="var(--lime)"/></svg>Taygo</a>
+    <span>Aceleradora de negócios · © 2026 Taygo</span>
+  </div>
+<a class="wa-float" href="https://wa.me/5547920023957?text=Ol%C3%A1%2C%20Taygo!%20Quero%20saber%20mais%20sobre%20os%20servi%C3%A7os." target="_blank" rel="noopener" aria-label="Falar com a Taygo no WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.21 3.08c.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.69.63.71.23 1.36.19 1.87.12.57-.09 1.76-.72 2.01-1.41.25-.7.25-1.29.17-1.41-.07-.13-.27-.2-.57-.35zM12.05 21.5h-.01a9.4 9.4 0 0 1-4.79-1.31l-.34-.2-3.56.93.95-3.47-.22-.36a9.37 9.37 0 0 1-1.44-5c0-5.18 4.22-9.4 9.41-9.4 2.51 0 4.87.98 6.65 2.76a9.34 9.34 0 0 1 2.75 6.65c0 5.18-4.22 9.4-9.4 9.4zm8-17.4A11.27 11.27 0 0 0 12.05.8C5.82.8.75 5.87.75 12.1c0 1.99.52 3.93 1.51 5.65L.65 23.6l5.99-1.57a11.3 11.3 0 0 0 5.4 1.38h.01c6.23 0 11.3-5.07 11.3-11.3 0-3.02-1.18-5.86-3.31-7.99z"/></svg></a>
+</footer>
+
+</body>
+</html>
